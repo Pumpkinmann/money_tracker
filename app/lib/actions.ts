@@ -13,6 +13,8 @@ const FormSchema = z.object({
   status: z.enum(['pending', 'paid']),
   date: z.string(),
 });
+
+
 const UpdateInvoice = FormSchema.omit({ id: true, date: true });
 const CreateInvoice = FormSchema.omit({ id: true, date: true });
 
@@ -54,6 +56,6 @@ export async function updateInvoice(id: string, formData: FormData) {
   }
 
 export async function deleteInvoice(id: string) {
-await sql`DELETE FROM invoices WHERE id = ${id}`;
-revalidatePath('/dashboard/invoices');
-}
+    await sql`DELETE FROM invoices WHERE id = ${id}`;
+    revalidatePath('/dashboard/invoices');
+    };
